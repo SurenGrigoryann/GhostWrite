@@ -1,3 +1,17 @@
+import cv2
+import time
+import numpy as np
+from mediapipe.tasks.python.core import base_options
+from mediapipe.tasks.python.vision.core import image as mp_image
+from mediapipe.tasks.python.vision.core.vision_task_running_mode import VisionTaskRunningMode
+from mediapipe.tasks.python.vision import hand_landmarker
+
+MODEL_PATH = "hand_landmarker.task"
+
+cap = cv2.VideoCapture(0)
+if not cap.isOpened():
+    raise RuntimeError("Unable to open the camera.")
+
 options = hand_landmarker.HandLandmarkerOptions(
     base_options=base_options.BaseOptions(model_asset_path=MODEL_PATH),
     running_mode=VisionTaskRunningMode.VIDEO,
